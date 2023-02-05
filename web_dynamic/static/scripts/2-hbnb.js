@@ -10,6 +10,17 @@
 
 		$('h4#amenities').text(object.values(amenities).join(','));
 	});
+});
+$.ajax({
+	type: 'GET',
+	url: 'http://0.0.0.0:5001/api/v1/status/', 
+	success: function(data) {
+		if (data.status === "OK") {
+			$("#api_status").addClass("available");
+		} else {
+			$("#api_status").removeClass("available");
+		}
+	}
 });*/
 
 $(function () {
@@ -35,4 +46,15 @@ $(function () {
                 }).join(', ');
                 $('.amenities h4').text(amenityNames);
         });
+	$.ajax({
+        	type: 'GET',
+        	url: 'http://127.0.0.1:5002/api/v1/status/',
+        	success: function(data) {
+                	if (data.status === "OK") {
+                        	$("#api_status").addClass("available");
+                	} else {
+                        	$("#api_status").removeClass("available");
+                	}
+        	}
+	});
 });
